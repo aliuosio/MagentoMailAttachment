@@ -1,51 +1,65 @@
-# Mage2 Module Osio MaillWithAttachment
+```markdown
+# MailWithAttachment Module
 
-    ``osio/module-maillwithattachment``
+## Overview
+The `MailWithAttachment` module is designed to facilitate sending emails with attachments in a PHP application. This module leverages Composer for dependency management and integrates with various email services.
 
- - [Main Functionalities](#markdown-header-main-functionalities)
- - [Installation](#markdown-header-installation)
- - [Configuration](#markdown-header-configuration)
- - [Specifications](#markdown-header-specifications)
- - [Attributes](#markdown-header-attributes)
-
-
-## Main Functionalities
-Magento Mail lWith Attachment
+## Features
+- Send emails with attachments
+- Supports multiple attachment types
+- Configurable email settings
 
 ## Installation
-\* = in production please use the `--keep-generated` option
+To install the `MailWithAttachment` module, use Composer:
 
-### Type 1: Zip file
+```bash
+composer require osio/mail-with-attachment
+```
 
- - Unzip the zip file in `app/code/Osio`
- - Enable the module by running `php bin/magento module:enable Osio_MaillWithAttachment`
- - Apply database updates by running `php bin/magento setup:upgrade`\*
- - Flush the cache by running `php bin/magento cache:flush`
+## Usage
+### Basic Example
+Here is a basic example of how to use the `MailWithAttachment` module to send an email with an attachment:
 
-### Type 2: Composer
+```php
+use Osio\MailWithAttachment\MailSender;
 
- - Make the module available in a composer repository for example:
-    - private repository `repo.magento.com`
-    - public repository `packagist.org`
-    - public github repository as vcs
- - Add the composer repository to the configuration by running `composer config repositories.repo.magento.com composer https://repo.magento.com/`
- - Install the module composer by running `composer require osio/module-maillwithattachment`
- - enable the module by running `php bin/magento module:enable Osio_MaillWithAttachment`
- - apply database updates by running `php bin/magento setup:upgrade`\*
- - Flush the cache by running `php bin/magento cache:flush`
+// Create a new instance of MailSender
+$mailSender = new MailSender();
 
+// Set email parameters
+$mailSender->setRecipient('recipient@example.com');
+$mailSender->setSubject('Subject of the email');
+$mailSender->setBody('Body of the email');
+
+// Add an attachment
+$mailSender->addAttachment('/path/to/attachment.pdf');
+
+// Send the email
+$mailSender->send();
+```
 
 ## Configuration
+The module can be configured using a configuration file. Here is an example configuration:
 
+```php
+return [
+    'smtp' => [
+        'host' => 'smtp.example.com',
+        'port' => 587,
+        'username' => 'your_username',
+        'password' => 'your_password',
+        'encryption' => 'tls',
+    ],
+    'from' => [
+        'email' => 'no-reply@example.com',
+        'name' => 'Example App',
+    ],
+];
+```
 
+## Contributing
+Contributions are welcome! Please submit a pull request or open an issue to discuss your changes.
 
-
-## Specifications
-
-
-
-
-## Attributes
-
-
-
+## License
+This module is open-source and licensed under the MIT License.
+```
