@@ -1,0 +1,24 @@
+{
+    "name": "osio/module-maillwithattachment",
+    "description": "Magento Mail lWith Attachment",
+    "type": "magento2-module",
+    "license": "MIT",
+    "version": "0.1.0",
+    "authors": [
+        {
+            "name": "Osiozekhai Aliu"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": "^7.4 || ^8.1"
+    },
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Osio\\MaillWithAttachment\\": ""
+        }
+    }
+}

@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!--
+/**
+* @author     Osiozekhai Aliu
+* @package    Osio_MagentoAutoPatch
+* @copyright  Copyright (c) 2024 Osio
+*
+* For the full copyright and license information, please view the LICENSE
+* file that was distributed with this source code.
+*/
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <!-- di for Magento\Framework\Mail\Template\TransportBuilder -->
+    <preference for="Magento\Framework\Mail\Template\TransportBuilder"
+                type="Osio\MaillWithAttachment\Model\TransportBuilder"/>
+</config>
