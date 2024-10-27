@@ -30,11 +30,12 @@ use Magento\Framework\Mail\TemplateInterface;
 use Magento\Framework\Mail\TransportInterface;
 use Magento\Framework\Mail\TransportInterfaceFactory;
 use Magento\Framework\ObjectManagerInterface;
+use Osio\MaillWithAttachment\Api\TransportBuilderInterface;
 
 /**
  * @SuppressWarnings(PHPMD.CouplingBetweenObjects)
  */
-class TransportBuilder extends TransportBuilderAlias
+class TransportBuilder extends TransportBuilderAlias implements TransportBuilderInterface
 {
 
     /**
@@ -132,11 +133,7 @@ class TransportBuilder extends TransportBuilderAlias
     }
 
     /**
-     * Add cc address
-     *
-     * @param  array|string $address
-     * @param  string       $name
-     * @return $this
+     * @inheritDoc
      */
     public function addCc($address, $name = ''): TransportBuilder
     {
@@ -146,11 +143,7 @@ class TransportBuilder extends TransportBuilderAlias
     }
 
     /**
-     * Add to address
-     *
-     * @param  array|string $address
-     * @param  string       $name
-     * @return $this
+     * @inheritDoc
      */
     public function addTo($address, $name = ''): TransportBuilder
     {
@@ -164,10 +157,7 @@ class TransportBuilder extends TransportBuilderAlias
     }
 
     /**
-     * Add bcc address
-     *
-     * @param  array|string $address
-     * @return $this
+     * @inheritDoc
      */
     public function addBcc($address): TransportBuilder
     {
@@ -181,11 +171,7 @@ class TransportBuilder extends TransportBuilderAlias
     }
 
     /**
-     * Set Reply-To Header
-     *
-     * @param  string      $email
-     * @param  string|null $name
-     * @return $this
+     * @inheritDoc
      */
     public function setReplyTo($email, $name = null): TransportBuilder
     {
@@ -200,13 +186,7 @@ class TransportBuilder extends TransportBuilderAlias
     }
 
     /**
-     * Set mail from address
-     *
-     * @param      string|array $from
-     * @return     $this|null
-     * @see        setFromByScope()
-     * @deprecated 102.0.1 This function sets the from address but does not provide
-     * a way of setting the correct from addresses based on the scope.
+     * @inheritDoc
      */
     public function setFrom($from): ?TransportBuilder
     {
@@ -218,12 +198,7 @@ class TransportBuilder extends TransportBuilderAlias
     }
 
     /**
-     * Set mail from address by scopeId
-     *
-     * @param  string|array $from
-     * @param  string|int   $scopeId
-     * @return $this
-     * @since  102.0.1
+     * @inheritDoc
      */
     public function setFromByScope($from, $scopeId = null): TransportBuilder
     {
@@ -237,10 +212,7 @@ class TransportBuilder extends TransportBuilderAlias
     }
 
     /**
-     * Set template identifier
-     *
-     * @param  string $templateIdentifier
-     * @return $this
+     * @inheritDoc
      */
     public function setTemplateIdentifier($templateIdentifier): TransportBuilder
     {
@@ -250,10 +222,7 @@ class TransportBuilder extends TransportBuilderAlias
     }
 
     /**
-     * Set template model
-     *
-     * @param  string $templateModel
-     * @return $this
+     * @inheritDoc
      */
     public function setTemplateModel($templateModel): TransportBuilder
     {
@@ -262,10 +231,7 @@ class TransportBuilder extends TransportBuilderAlias
     }
 
     /**
-     * Set template vars
-     *
-     * @param  array $templateVars
-     * @return $this
+     * @inheritDoc
      */
     public function setTemplateVars($templateVars): TransportBuilder
     {
@@ -275,10 +241,7 @@ class TransportBuilder extends TransportBuilderAlias
     }
 
     /**
-     * Set template options
-     *
-     * @param  array $templateOptions
-     * @return $this
+     * @inheritDoc
      */
     public function setTemplateOptions($templateOptions): TransportBuilder
     {
@@ -288,9 +251,7 @@ class TransportBuilder extends TransportBuilderAlias
     }
 
     /**
-     * Get mail transport
-     *
-     * @return TransportInterface
+     * @inheritDoc
      */
     public function getTransport(): TransportInterface
     {
@@ -339,10 +300,10 @@ class TransportBuilder extends TransportBuilderAlias
     private function getTemplateType(TemplateInterface $template): ?string
     {
         switch ($template->getType()) {
-            case TemplateTypesInterface::TYPE_TEXT:
-                return MimeInterface::TYPE_TEXT;
-            case TemplateTypesInterface::TYPE_HTML:
-                return MimeInterface::TYPE_HTML;
+        case TemplateTypesInterface::TYPE_TEXT:
+            return MimeInterface::TYPE_TEXT;
+        case TemplateTypesInterface::TYPE_HTML:
+            return MimeInterface::TYPE_HTML;
         }
         throw new InvalidArgumentException('Unknown template type');
     }

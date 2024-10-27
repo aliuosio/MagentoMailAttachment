@@ -2,7 +2,7 @@
 <!--
 /**
 * @author     Osiozekhai Aliu
-* @package    Osio_MagentoAutoPatch
+* @package    Osio_MaillWithAttachment
 * @copyright  Copyright (c) 2024 Osio
 *
 * For the full copyright and license information, please view the LICENSE
@@ -11,7 +11,10 @@
 -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Osio\MaillWithAttachment\Api\TransportBuilderInterface"
+                type="Osio\MaillWithAttachment\Model\TransportBuilder"/>
+
     <!-- di for Magento\Framework\Mail\Template\TransportBuilder -->
     <preference for="Magento\Framework\Mail\Template\TransportBuilder"
-                type="Osio\MaillWithAttachment\Model\TransportBuilder"/>
+                type="Osio\MaillWithAttachment\Api\TransportBuilderInterface"/>
 </config>
