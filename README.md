@@ -13,7 +13,7 @@ The `MailWithAttachment` module is designed to facilitate sending emails with at
 To install the `MailWithAttachment` module, use Composer:
 
 ```bash
-composer require osio/mail-with-attachment
+composer require osio/module-maillwithattachment
 ```
 
 ## Usage
