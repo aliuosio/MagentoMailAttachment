@@ -1,4 +1,3 @@
-```markdown
 # MailWithAttachment Module
 
 ## Overview
@@ -10,17 +9,15 @@ The `MailWithAttachment` module is designed to facilitate sending emails with at
 
 ## Installation
 To install the `MagentoMailhAttachment` module, use Composer:
-
-```bash
-composer require osio/magento-mail_attachment
-```
+        
+    composer require osio/magento-mail_attachment
+    bin/magento setup:upgrade
 
 ## Usage
 ### Basic Example
 Here is a basic example of how to use the `MagentoMailhAttachment` module to send an email with an attachment:
 
 > adds attacments to standard magento mail bulder **(Magento\Framework\Mail\Template\TransportBuilder)**
-```php
 
 ## Contributing
 Contributions are welcome! Please submit a pull request or open an issue to discuss your changes.
