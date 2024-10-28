@@ -14,6 +14,7 @@
 
 namespace Osio\MagentoMailAttachment\Api;
 
+use Magento\Framework\Exception\MailException;
 use Magento\Framework\Mail\TransportInterface;
 
 interface TransportBuilderInterface
@@ -58,6 +59,7 @@ interface TransportBuilderInterface
      *
      * @param  string|array $from
      * @return self|null
+     * @throws MailException
      */
     public function setFrom($from): ?self;
 

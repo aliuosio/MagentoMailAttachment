@@ -266,6 +266,22 @@ class TransportBuilder extends TransportBuilderAlias implements TransportBuilder
     }
 
     /**
+     * @inheritDoc
+     */
+    public function addAttachment(?string $content, ?string $fileName, ?string $fileType): TransportBuilder
+    {
+        $attachmentPart = $this->partFactory->create();
+        $attachmentPart->setContent($content)
+            ->setType($fileType)
+            ->setFileName($fileName)
+            ->setDisposition(Mime::DISPOSITION_ATTACHMENT)
+            ->setEncoding(Mime::ENCODING_BASE64);
+        $this->attachments[] = $attachmentPart;
+
+        return $this;
+    }
+
+    /**
      * Reset object state
      *
      * @return $this
@@ -300,10 +316,10 @@ class TransportBuilder extends TransportBuilderAlias implements TransportBuilder
     private function getTemplateType(TemplateInterface $template): ?string
     {
         switch ($template->getType()) {
-        case TemplateTypesInterface::TYPE_TEXT:
-            return MimeInterface::TYPE_TEXT;
-        case TemplateTypesInterface::TYPE_HTML:
-            return MimeInterface::TYPE_HTML;
+            case TemplateTypesInterface::TYPE_TEXT:
+                return MimeInterface::TYPE_TEXT;
+            case TemplateTypesInterface::TYPE_HTML:
+                return MimeInterface::TYPE_HTML;
         }
         throw new InvalidArgumentException('Unknown template type');
     }
@@ -354,26 +370,5 @@ class TransportBuilder extends TransportBuilderAlias implements TransportBuilder
         } catch (InvalidArgumentException $e) {
             throw new InvalidArgumentException(__($e->getMessage()), $e);
         }
-    }
-
-    /**
-     * Add Attachment
-     *
-     * @param  string|null $content
-     * @param  string|null $fileName
-     * @param  string|null $fileType
-     * @return TransportBuilder
-     */
-    public function addAttachment(?string $content, ?string $fileName, ?string $fileType): TransportBuilder
-    {
-        $attachmentPart = $this->partFactory->create();
-        $attachmentPart->setContent($content)
-            ->setType($fileType)
-            ->setFileName($fileName)
-            ->setDisposition(Mime::DISPOSITION_ATTACHMENT)
-            ->setEncoding(Mime::ENCODING_BASE64);
-        $this->attachments[] = $attachmentPart;
-
-        return $this;
     }
 }
