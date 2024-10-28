@@ -2,7 +2,7 @@
 /**
  * Interface for TransportBuilder
  *
- * @package    Osio_MaillWithAttachment
+ * @package    Osio_MagentoMailAttachment
  * @subpackage Api
  * @category   Email
  * @version    1.0.0
@@ -12,7 +12,7 @@
  *            file that was distributed with this source code.
  */
 
-namespace Osio\MaillWithAttachment\Api;
+namespace Osio\MagentoMailAttachment\Api;
 
 use Magento\Framework\Mail\TransportInterface;
 

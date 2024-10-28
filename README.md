@@ -13,7 +13,7 @@ The `MailWithAttachment` module is designed to facilitate sending emails with at
 To install the `MailWithAttachment` module, use Composer:
 
 ```bash
-composer require osio/module-maillwithattachment
+composer require osio/magento-mail_attachment
 ```
 
 ## Usage

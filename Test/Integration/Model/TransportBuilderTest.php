@@ -1,18 +1,18 @@
 <?php declare(strict_types=1);
 /**
  * @author    Osiozekhai Aliu
- * @package   Osio_MaillWithAttachment
+ * @package   Osio_MagentoMailAttachment
  * @copyright Copyright (c) 2024 Osio
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace Osio\MaillWithAttachment\Test\Integration\Model;
+namespace Osio\MagentoMailAttachment\Test\Integration\Model;
 
 use Magento\Framework\Exception\LocalizedException;
 use Magento\TestFramework\Helper\Bootstrap;
-use Osio\MaillWithAttachment\Model\TransportBuilder;
+use Osio\MagentoMailAttachment\Model\TransportBuilder;
 use PHPUnit\Framework\TestCase;
 
 class TransportBuilderTest extends TestCase

@@ -1,14 +1,14 @@
 <?php declare(strict_types=1);
 /**
  * @author    Osiozekhai Aliu
- * @package   Osio_MaillWithAttachment
+ * @package   Osio_MagentoMailAttachment
  * @copyright Copyright (c) 2024 Osio
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace Osio\MaillWithAttachment\Model;
+namespace Osio\MagentoMailAttachment\Model;
 
 use Laminas\Mime\Mime;
 use Laminas\Mime\PartFactory;
@@ -30,7 +30,7 @@ use Magento\Framework\Mail\TemplateInterface;
 use Magento\Framework\Mail\TransportInterface;
 use Magento\Framework\Mail\TransportInterfaceFactory;
 use Magento\Framework\ObjectManagerInterface;
-use Osio\MaillWithAttachment\Api\TransportBuilderInterface;
+use Osio\MagentoMailAttachment\Api\TransportBuilderInterface;
 
 /**
  * @SuppressWarnings(PHPMD.CouplingBetweenObjects)

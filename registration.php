@@ -1,7 +1,7 @@
 <?php
 /**
  * @author    Osiozekhai Aliu
- * @package   Osio_MaillWithAttachment
+ * @package   Osio_MagentoMailAttachment
  * @copyright Copyright (c) 2024 Osio
  *
  * For the full copyright and license information, please view the LICENSE
@@ -11,5 +11,5 @@ declare(strict_types=1);
 
 use Magento\Framework\Component\ComponentRegistrar;
 
-ComponentRegistrar::register(ComponentRegistrar::MODULE, 'Osio_MaillWithAttachment', __DIR__);
+ComponentRegistrar::register(ComponentRegistrar::MODULE, 'Osio_MagentoMailAttachment', __DIR__);
 
