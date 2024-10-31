@@ -12,7 +12,6 @@ namespace Osio\MagentoMailAttachment\Model;
 
 use Laminas\Mime\Mime;
 use Laminas\Mime\PartFactory;
-use Magento\Framework\App\TemplateTypesInterface;
 use Magento\Framework\Escaper;
 use Magento\Framework\Exception\MailException;
 use Magento\Framework\Mail\AddressConverter;
@@ -37,6 +36,16 @@ use Osio\MagentoMailAttachment\Api\TransportBuilderInterface;
  */
 class TransportBuilder extends TransportBuilderAlias implements TransportBuilderInterface
 {
+
+    /**
+     * @var int
+     */
+    protected const TYPE_TEXT = 1;
+
+    /**
+     * @var int
+     */
+    protected const  TYPE_HTML = 2;
 
     /**
      * @var array
@@ -79,17 +88,18 @@ class TransportBuilder extends TransportBuilderAlias implements TransportBuilder
     private Escaper $escaper;
 
     /**
-     * @param Escaper                           $escaper
-     * @param FactoryInterface                  $templateFactory
-     * @param MessageInterface                  $message
-     * @param SenderResolverInterface           $senderResolver
-     * @param ObjectManagerInterface            $objectManager
-     * @param TransportInterfaceFactory         $mailTransportFactory
-     * @param MessageInterfaceFactory|null      $messageFactory
-     * @param EmailMessageInterfaceFactory|null $emailMessageInterfaceFactory
-     * @param MimeMessageInterfaceFactory|null  $mimeMessageInterfaceFactory
-     * @param MimePartInterfaceFactory|null     $mimePartInterfaceFactory
-     * @param AddressConverter|null             $addressConverter
+     * @param                                          Escaper                           $escaper
+     * @param                                          FactoryInterface                  $templateFactory
+     * @param                                          MessageInterface                  $message
+     * @param                                          SenderResolverInterface           $senderResolver
+     * @param                                          ObjectManagerInterface            $objectManager
+     * @param                                          TransportInterfaceFactory         $mailTransportFactory
+     * @param                                          MessageInterfaceFactory|null      $messageFactory
+     * @param                                          EmailMessageInterfaceFactory|null $emailMessageInterfaceFactory
+     * @param                                          MimeMessageInterfaceFactory|null  $mimeMessageInterfaceFactory
+     * @param                                          MimePartInterfaceFactory|null     $mimePartInterfaceFactory
+     * @param                                          AddressConverter|null             $addressConverter
+     * @SuppressWarnings(PHPMD.ExcessiveParameterList)
      */
     public function __construct(
         Escaper                      $escaper,
@@ -316,9 +326,9 @@ class TransportBuilder extends TransportBuilderAlias implements TransportBuilder
     private function getTemplateType(TemplateInterface $template): ?string
     {
         switch ($template->getType()) {
-            case TemplateTypesInterface::TYPE_TEXT:
+            case self::TYPE_TEXT:
                 return MimeInterface::TYPE_TEXT;
-            case TemplateTypesInterface::TYPE_HTML:
+            case self::TYPE_HTML:
                 return MimeInterface::TYPE_HTML;
         }
         throw new InvalidArgumentException('Unknown template type');
