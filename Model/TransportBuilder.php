@@ -55,22 +55,22 @@ class TransportBuilder extends TransportBuilderAlias implements TransportBuilder
     /**
      * @var EmailMessageInterfaceFactory
      */
-    private $emailMessageInterfaceFactory;
+    private EmailMessageInterfaceFactory $emailMessageInterfaceFactory;
 
     /**
      * @var MimeMessageInterfaceFactory
      */
-    private $mimeMessageInterfaceFactory;
+    private MimeMessageInterfaceFactory $mimeMessageInterfaceFactory;
 
     /**
      * @var MimePartInterfaceFactory
      */
-    private $mimePartInterfaceFactory;
+    private MimePartInterfaceFactory $mimePartInterfaceFactory;
 
     /**
      * @var AddressConverter|null
      */
-    private $addressConverter;
+    private ?AddressConverter $addressConverter;
 
     /**
      * @var array
@@ -88,17 +88,18 @@ class TransportBuilder extends TransportBuilderAlias implements TransportBuilder
     private Escaper $escaper;
 
     /**
-     * @param                                          Escaper                           $escaper
-     * @param                                          FactoryInterface                  $templateFactory
-     * @param                                          MessageInterface                  $message
-     * @param                                          SenderResolverInterface           $senderResolver
-     * @param                                          ObjectManagerInterface            $objectManager
-     * @param                                          TransportInterfaceFactory         $mailTransportFactory
-     * @param                                          MessageInterfaceFactory|null      $messageFactory
-     * @param                                          EmailMessageInterfaceFactory|null $emailMessageInterfaceFactory
-     * @param                                          MimeMessageInterfaceFactory|null  $mimeMessageInterfaceFactory
-     * @param                                          MimePartInterfaceFactory|null     $mimePartInterfaceFactory
-     * @param                                          AddressConverter|null             $addressConverter
+     * @param                                          Escaper                      $escaper
+     * @param                                          FactoryInterface             $templateFactory
+     * @param                                          MessageInterface             $message
+     * @param                                          SenderResolverInterface      $senderResolver
+     * @param                                          ObjectManagerInterface       $objectManager
+     * @param                                          PartFactory                  $partFactory
+     * @param                                          TransportInterfaceFactory    $mailTransportFactory
+     * @param                                          MessageInterfaceFactory      $messageFactory
+     * @param                                          EmailMessageInterfaceFactory $emailMessageInterfaceFactory
+     * @param                                          MimeMessageInterfaceFactory  $mimeMessageInterfaceFactory
+     * @param                                          MimePartInterfaceFactory     $mimePartInterfaceFactory
+     * @param                                          AddressConverter|null        $addressConverter
      * @SuppressWarnings(PHPMD.ExcessiveParameterList)
      */
     public function __construct(
@@ -107,12 +108,13 @@ class TransportBuilder extends TransportBuilderAlias implements TransportBuilder
         MessageInterface             $message,
         SenderResolverInterface      $senderResolver,
         ObjectManagerInterface       $objectManager,
+        PartFactory                  $partFactory,
         TransportInterfaceFactory    $mailTransportFactory,
-        MessageInterfaceFactory      $messageFactory = null,
-        EmailMessageInterfaceFactory $emailMessageInterfaceFactory = null,
-        MimeMessageInterfaceFactory  $mimeMessageInterfaceFactory = null,
-        MimePartInterfaceFactory     $mimePartInterfaceFactory = null,
-        AddressConverter             $addressConverter = null
+        MessageInterfaceFactory      $messageFactory,
+        EmailMessageInterfaceFactory $emailMessageInterfaceFactory,
+        MimeMessageInterfaceFactory  $mimeMessageInterfaceFactory,
+        MimePartInterfaceFactory     $mimePartInterfaceFactory,
+        AddressConverter             $addressConverter
     ) {
         parent::__construct(
             $templateFactory,
@@ -130,16 +132,12 @@ class TransportBuilder extends TransportBuilderAlias implements TransportBuilder
         $this->objectManager = $objectManager;
         $this->_senderResolver = $senderResolver;
         $this->mailTransportFactory = $mailTransportFactory;
-        $this->emailMessageInterfaceFactory = $emailMessageInterfaceFactory ?: $this->objectManager
-            ->get(EmailMessageInterfaceFactory::class);
-        $this->mimeMessageInterfaceFactory = $mimeMessageInterfaceFactory ?: $this->objectManager
-            ->get(MimeMessageInterfaceFactory::class);
-        $this->mimePartInterfaceFactory = $mimePartInterfaceFactory ?: $this->objectManager
-            ->get(MimePartInterfaceFactory::class);
-        $this->addressConverter = $addressConverter ?: $this->objectManager
-            ->get(AddressConverter::class);
-        $this->partFactory = $objectManager->get(PartFactory::class);
+        $this->emailMessageInterfaceFactory = $emailMessageInterfaceFactory;
+        $this->mimeMessageInterfaceFactory = $mimeMessageInterfaceFactory;
+        $this->mimePartInterfaceFactory = $mimePartInterfaceFactory;
+        $this->addressConverter = $addressConverter;
         $this->escaper = $escaper;
+        $this->partFactory = $partFactory;
     }
 
     /**
@@ -326,10 +324,10 @@ class TransportBuilder extends TransportBuilderAlias implements TransportBuilder
     private function getTemplateType(TemplateInterface $template): ?string
     {
         switch ($template->getType()) {
-            case self::TYPE_TEXT:
-                return MimeInterface::TYPE_TEXT;
-            case self::TYPE_HTML:
-                return MimeInterface::TYPE_HTML;
+        case self::TYPE_TEXT:
+            return MimeInterface::TYPE_TEXT;
+        case self::TYPE_HTML:
+            return MimeInterface::TYPE_HTML;
         }
         throw new InvalidArgumentException('Unknown template type');
     }
