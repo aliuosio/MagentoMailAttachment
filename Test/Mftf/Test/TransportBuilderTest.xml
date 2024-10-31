@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<tests xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:noNamespaceSchemaLocation="urn:magento:framework:Test/etc/testschema.xsd">
+    <test name="TransportBuilderTest" xmlns="urn:magento:framework:Test/etc/testschema.xsd">
+        <annotations>
+            <annotation name="group">email</annotation>
+        </annotations>
+        <preconditions>
+            <precondition name="AdminLoggedIn"/>
+        </preconditions>
+        <steps>
+            <step actionGroup="OsioMagentoMailAttachmentTransportBuilderActionGroup"/>
+            <step>
+                <assertion>
+                    <equals expected="expected@example.com" actual="{{TransportBuilder.getToAddress()}}"/>
+                </assertion>
+            </step>
+            <step>
+                <assertion>
+                    <equals expected="Subject" actual="{{TransportBuilder.getSubject()}}"/>
+                </assertion>
+            </step>
+            <step>
+                <assertion>
+                    <equals expected="Body content" actual="{{TransportBuilder.getBodyContent()}}"/>
+                </assertion>
+            </step>
+        </steps>
+    </test>
+</tests>

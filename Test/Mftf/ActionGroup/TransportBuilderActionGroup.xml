@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<actionGroups xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:noNamespaceSchemaLocation="urn:magento:framework:Test/etc/actionGroupSchema.xsd">
+    <actionGroup name="OsioMagentoMailAttachmentTransportBuilderActionGroup" namespace="Osio\MagentoMailAttachment\Test\ActionGroup">
+        <actions>
+            <action method="addTo">
+                <argument name="address" type="string">expected@example.com</argument>
+            </action>
+            <action method="setTemplateVars">
+                <argument name="templateVars" type="array">
+                    <item name="subject" xsi:type="string">Subject</item>
+                    <item name="body" xsi:type="string">Body content</item>
+                </argument>
+            </action>
+        </actions>
+    </actionGroup>
+</actionGroups>
