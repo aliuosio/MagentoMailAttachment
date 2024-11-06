@@ -324,10 +324,10 @@ class TransportBuilder extends TransportBuilderAlias implements TransportBuilder
     private function getTemplateType(TemplateInterface $template): ?string
     {
         switch ($template->getType()) {
-            case self::TYPE_TEXT:
-                return MimeInterface::TYPE_TEXT;
-            case self::TYPE_HTML:
-                return MimeInterface::TYPE_HTML;
+        case self::TYPE_TEXT:
+            return MimeInterface::TYPE_TEXT;
+        case self::TYPE_HTML:
+            return MimeInterface::TYPE_HTML;
         }
         throw new InvalidArgumentException('Unknown template type');
     }
