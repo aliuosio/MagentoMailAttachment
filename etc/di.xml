@@ -14,7 +14,13 @@
     <preference for="Osio\MagentoMailAttachment\Api\TransportBuilderInterface"
                 type="Osio\MagentoMailAttachment\Model\TransportBuilder"/>
 
-    <!-- di for Magento\Framework\Mail\Template\TransportBuilder -->
-    <preference for="Magento\Framework\Mail\Template\TransportBuilder"
-                type="Osio\MagentoMailAttachment\Api\TransportBuilderInterface"/>
+    <!-- comand list -->
+    <type name="Magento\Framework\Console\CommandList">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="mail_test" xsi:type="object">Osio\MagentoMailAttachment\Console\Mail</item>
+            </argument>
+        </arguments>
+    </type>
+
 </config>
