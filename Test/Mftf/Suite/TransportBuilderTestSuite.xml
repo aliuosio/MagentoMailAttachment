@@ -1,7 +1,0 @@
-<?xml version="1.0"?>
-<suite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:noNamespaceSchemaLocation="urn:magento:framework:Test/etc/suite.xsd">
-    <tests>
-        <test name="TransportBuilderTest"/>
-    </tests>
-</suite>

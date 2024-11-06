@@ -1,8 +1,0 @@
-<?xml version="1.0"?>
-<entities xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-          xsi:noNamespaceSchemaLocation="urn:magento:framework:Test/etc/datatype.xsd">
-    <entity name="TransportBuilderData" namespace="Osio\MagentoMailAttachment\Test\Mftf\Data">
-        <data name="email">test@example.com</data>
-        <data name="attachment">var/log/debug.log</data>
-    </entity>
-</entities>
