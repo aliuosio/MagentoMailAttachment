@@ -12,9 +12,9 @@ The `MailWithAttachment` module is designed to facilitate sending emails with at
 ## Installation
 
 To install the `MagentoMailhAttachment` module, use Composer:
-
-composer require osio/magento-mail_attachment
-bin/magento setup:upgrade
+    
+    composer require osio/magento-mail_attachment
+    bin/magento setup:upgrade
 
 ## Usage
 
