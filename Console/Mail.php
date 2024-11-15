@@ -86,7 +86,7 @@ class Mail extends Command
      * @throws LocalizedException
      * @throws MailException
      */
-    public function sendEmail()
+    private function sendEmail()
     {
         $this->appState->setAreaCode(Area::AREA_FRONTEND);
 
